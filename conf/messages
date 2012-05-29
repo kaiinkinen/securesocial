@@ -72,4 +72,5 @@ securesocial.resetLabel=Please give the email address that you used when signing
 securesocial.invalidResetTitle=The reset password is not valid
 securesocial.invalidResetLink=The password reset link you followed is invalid
 securesocial.resetError=There was an unexpected error when resetting your password. Please try again
+securesocial.resetEmailText=Follow this <a href="%s">link</a> to reset the password for your account.
 

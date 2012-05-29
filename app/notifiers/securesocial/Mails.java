@@ -40,6 +40,7 @@ public class Mails extends Mailer {
 
     private static final String SECURESOCIAL_RESET_MAILER_SUBJECT = "securesocial.mailer.reset.subject";
     private static final String SECURESOCIAL_RESET_PASSWORD_CONTROLLER_CHANGE = "securesocial.PasswordResetController.changePassword";
+    private static final String APPLICATION_BASE_URL = "application.baseUrl";
 
     private static final String UUID = "uuid";
     private static final String USERNAME = "username";
@@ -50,7 +51,11 @@ public class Mails extends Mailer {
         addRecipient(user.email);
         Map<String, Object> args = new HashMap<String, Object>();
         args.put(UUID, uuid);
-        String activationUrl = Router.getFullUrl(SECURESOCIAL_USERNAME_PASSWORD_CONTROLLER_ACTIVATE, args);
+
+        String activationPath = Router.reverse(SECURESOCIAL_RESET_PASSWORD_CONTROLLER_CHANGE, args).toString();
+        String baseUrl = Play.configuration.getProperty(APPLICATION_BASE_URL);
+
+        String activationUrl = baseUrl + activationPath;
         send(user, activationUrl);
     }
 
@@ -61,7 +66,11 @@ public class Mails extends Mailer {
         Map<String, Object> args = new HashMap<String, Object>();
         args.put(USERNAME, user.id.id);
         args.put(UUID, uuid);
-        String activationUrl = Router.getFullUrl(SECURESOCIAL_RESET_PASSWORD_CONTROLLER_CHANGE, args);
+
+        String activationPath = Router.reverse(SECURESOCIAL_RESET_PASSWORD_CONTROLLER_CHANGE, args).toString();
+        String baseUrl = Play.configuration.getProperty(APPLICATION_BASE_URL);
+
+        String activationUrl = baseUrl + activationPath;
         send(user, activationUrl);
     }
 
